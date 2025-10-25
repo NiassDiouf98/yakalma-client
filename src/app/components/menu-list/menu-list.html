@@ -1,0 +1,108 @@
+<div class="menu-list-container">
+  <!-- Virtual Scroll Viewport -->
+  <cdk-virtual-scroll-viewport
+    [itemSize]="itemSize"
+    [minBufferPx]="minBufferPx"
+    [maxBufferPx]="maxBufferPx"
+    class="virtual-scroll-viewport"
+    (scrolledIndexChange)="onScrollEnd()">
+
+    <div class="dish-grid">
+      <div *cdkVirtualFor="let dish of displayedDishes; trackBy: trackByDishId"
+           class="dish-item"
+           appAnimate="fadeIn"
+           (click)="onDishClick(dish)">
+
+        <!-- Dish Card with Creative Design -->
+        <div class="dish-card group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-700">
+
+          <!-- Background Image Overlay -->
+          <div class="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-30 transition-opacity duration-500"
+               [style.background-image]="'url(' + dish.image + ')'"></div>
+
+          <!-- Content Overlay -->
+          <div class="relative z-10 p-6 h-full flex flex-col justify-between">
+
+            <!-- Header with Category Badge -->
+            <div class="flex justify-between items-start mb-4">
+              <mat-chip class="category-chip" [color]="getCategoryColor(dish.category)">
+                {{ dish.category }}
+              </mat-chip>
+              <div class="flex items-center space-x-1">
+                <mat-icon class="text-yellow-400 text-sm">star</mat-icon>
+                <span class="text-white text-sm font-medium">{{ dish.rating }}</span>
+                <span class="text-gray-400 text-xs">({{ dish.reviewsCount }})</span>
+              </div>
+            </div>
+
+            <!-- Dish Name and Description -->
+            <div class="mb-4">
+              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">
+                {{ dish.name }}
+              </h3>
+              <p class="text-gray-300 text-sm line-clamp-2 leading-relaxed">
+                {{ dish.description }}
+              </p>
+            </div>
+
+            <!-- Ingredients Preview -->
+            <div class="mb-4">
+              <div class="flex flex-wrap gap-1">
+                <span *ngFor="let ingredient of dish.ingredients.slice(0, 3)"
+                      class="inline-block bg-blue-500/20 text-blue-300 text-xs px-2 py-1 rounded-full border border-blue-500/30">
+                  {{ ingredient }}
+                </span>
+                <span *ngIf="dish.ingredients.length > 3"
+                      class="inline-block bg-gray-600/50 text-gray-400 text-xs px-2 py-1 rounded-full">
+                  +{{ dish.ingredients.length - 3 }} autres
+                </span>
+              </div>
+            </div>
+
+            <!-- Footer with Price and Details -->
+            <div class="flex justify-between items-center">
+              <div class="flex flex-col">
+                <span class="text-2xl font-bold text-blue-400">{{ dish.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</span>
+                <div class="flex items-center space-x-2 text-xs text-gray-400">
+                  <mat-icon class="text-xs">schedule</mat-icon>
+                  <span>{{ dish.preparationTime }} min</span>
+                  <span *ngIf="!dish.isAvailable" class="text-red-400 font-medium">Indisponible</span>
+                </div>
+              </div>
+
+              <!-- Action Button -->
+              <button mat-fab
+                      color="primary"
+                      class="action-btn opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300"
+                      [disabled]="!dish.isAvailable">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <!-- Hover Effect Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="loading-container">
+      <mat-spinner diameter="40" color="primary"></mat-spinner>
+      <p class="text-gray-400 mt-2">Chargement de plus de plats...</p>
+    </div>
+
+    <!-- End of List Message -->
+    <div *ngIf="!hasMoreData && !isLoading && displayedDishes.length > 0" class="end-message">
+      <mat-icon class="text-gray-500 mb-2">expand_more</mat-icon>
+      <p class="text-gray-400 text-sm">Fin de la liste</p>
+    </div>
+  </cdk-virtual-scroll-viewport>
+
+  <!-- Empty State -->
+  <div *ngIf="displayedDishes.length === 0 && !isLoading" class="empty-state">
+    <mat-icon class="text-gray-500 text-6xl mb-4">restaurant_menu</mat-icon>
+    <h3 class="text-xl font-semibold text-gray-300 mb-2">Aucun plat trouvé</h3>
+    <p class="text-gray-500 text-center">Essayez de modifier vos filtres pour voir plus de plats.</p>
+  </div>
+</div>

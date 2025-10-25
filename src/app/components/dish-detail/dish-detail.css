@@ -1,0 +1,96 @@
+/* Dish Detail Modal Styles */
+.dish-detail-modal {
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Custom scrollbar for modal content */
+.dish-detail-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dish-detail-modal::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.dish-detail-modal::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 3px;
+}
+
+.dish-detail-modal::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+/* Category chip styling */
+.category-chip {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  font-weight: 500;
+}
+
+/* Material form field customization */
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field-outline {
+  color: rgba(156, 163, 175, 0.5);
+}
+
+.mat-mdc-form-field-focus-overlay {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.mat-mdc-text-field-wrapper {
+  background-color: rgba(31, 41, 55, 0.5);
+}
+
+.mat-mdc-input-element {
+  color: white;
+}
+
+.mat-mdc-form-field-label {
+  color: rgba(156, 163, 175, 0.8);
+}
+
+.mat-mdc-form-field-required-marker {
+  color: #ef4444;
+}
+
+/* Button customizations */
+.mat-mdc-raised-button {
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: none;
+  padding: 12px 24px;
+}
+
+.mat-mdc-stroked-button {
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: none;
+  padding: 12px 24px;
+}
+
+.mat-mdc-icon-button {
+  border-radius: 50%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .dish-detail-modal {
+    margin: 8px;
+    max-height: calc(100vh - 16px);
+  }
+
+  .dish-detail-modal .text-3xl {
+    font-size: 1.5rem;
+  }
+
+  .dish-detail-modal .text-2xl {
+    font-size: 1.25rem;
+  }
+}

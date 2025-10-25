@@ -1,2 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Global modal overlay customization */
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Dish detail modal panel class */
+.dish-detail-modal .mat-mdc-dialog-container {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dish-detail-modal .mdc-dialog__surface {
+  border-radius: 16px;
+  max-height: 90vh;
+}
 @import "tailwindcss";

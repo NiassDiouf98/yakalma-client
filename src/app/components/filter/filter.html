@@ -1,0 +1,72 @@
+<div class="filter-container bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-700">
+  <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+    <mat-icon class="mr-2 text-blue-400">filter_list</mat-icon>
+    Filtres
+  </h3>
+
+  <!-- Recherche textuelle -->
+  <mat-form-field class="w-full mb-4">
+    <mat-label class="text-gray-300">Rechercher un plat</mat-label>
+    <input matInput
+           [(ngModel)]="searchTerm"
+           (input)="onFilterChange()"
+           placeholder="Nom, description ou ingrédient...">
+    <mat-icon matSuffix class="text-gray-400">search</mat-icon>
+  </mat-form-field>
+
+  <!-- Sélection de catégorie -->
+  <div class="w-full mb-4">
+    <label class="block text-gray-300 mb-2 font-medium">Catégorie</label>
+    <ng-select
+      [(ngModel)]="selectedCategory"
+      (change)="onFilterChange()"
+      [items]="categoriesWithAll"
+      bindLabel="label"
+      bindValue="value"
+      [clearable]="false"
+      [appendTo]="'body'"
+      class="bg-[#5371ff]/90 text-white rounded-md border border-gray-700 hover:border-gray-400 focus:border-gray-400/40 outline-none">
+    </ng-select>
+  </div>
+
+  <!-- Plage de prix -->
+  <div class="mb-4">
+    <label class="block text-gray-300 mb-2 font-medium">Prix (€)</label>
+    <div class="px-3">
+      <mat-slider
+        [min]="0"
+        [max]="50"
+        [step]="1"
+        [discrete]="true"
+        class="price-slider">
+        <input matSliderThumb [(ngModel)]="minPrice" (input)="onFilterChange()">
+        <input matSliderThumb [(ngModel)]="maxPrice" (input)="onFilterChange()">
+      </mat-slider>
+      <div class="flex justify-between text-sm text-gray-400 mt-1">
+        <span>{{ formatPrice(minPrice) }}</span>
+        <span>{{ formatPrice(maxPrice) }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disponibilité -->
+  <div class="flex items-center mb-4">
+    <mat-checkbox
+      name="availableOnly"
+      [(ngModel)]="showAvailableOnly"
+      (change)="onFilterChange()"
+      color="primary"
+      class="text-blue-400">
+      Disponibles uniquement
+    </mat-checkbox>
+  </div>
+
+  <!-- Bouton de réinitialisation -->
+  <button mat-raised-button
+          color="accent"
+          (click)="clearFilters()"
+          class="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded transition-colors duration-200">
+    <mat-icon class="mr-2">clear_all</mat-icon>
+    Réinitialiser les filtres
+  </button>
+</div>

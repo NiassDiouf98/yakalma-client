@@ -1,0 +1,87 @@
+.filter-container {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border: 1px solid #374151;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.filter-container:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.price-slider {
+  --mdc-slider-track-color: #5371ff;
+  --mdc-slider-handle-color: #5371ff;
+  --mdc-slider-active-track-color: #5371ff;
+  --mdc-slider-inactive-track-color: #4b5563;
+}
+
+/* Form field styling */
+.mat-mdc-form-field {
+  --mdc-text-field-container-color: #1f2937;
+  --mdc-text-field-outline-color: #4b5563;
+  --mdc-text-field-label-text-color: #9ca3af;
+  --mdc-text-field-input-text-color: #ffffff;
+  --mdc-text-field-hover-outline-color: #6b7280;
+  --mdc-text-field-focus-outline-color: #5371ff;
+}
+
+.mat-mdc-form-field.mat-focused {
+  --mdc-text-field-outline-color: #5371ff;
+}
+
+/* Select styling */
+.mat-mdc-select {
+  --mdc-select-container-color: #1f2937;
+  --mdc-select-outline-color: #4b5563;
+  --mdc-select-label-text-color: #9ca3af;
+  --mdc-select-input-text-color: #ffffff;
+  --mdc-select-hover-outline-color: #6b7280;
+  --mdc-select-focus-outline-color: #5371ff;
+}
+
+.mat-mdc-select.mat-focused {
+  --mdc-select-outline-color: #5371ff;
+}
+
+/* Option styling */
+.mat-mdc-option {
+  --mdc-list-item-container-color: #1f2937;
+  --mdc-list-item-label-text-color: #ffffff;
+  --mdc-list-item-hover-container-color: #374151;
+  --mdc-list-item-focus-container-color: #374151;
+}
+
+.mat-mdc-option.mat-selected {
+  --mdc-list-item-container-color: #5371ff;
+  --mdc-list-item-label-text-color: #ffffff;
+}
+
+/* Checkbox styling */
+.mat-mdc-checkbox {
+  --mdc-checkbox-selected-checkmark-color: #5371ff;
+  --mdc-checkbox-selected-container-color: #5371ff;
+  --mdc-checkbox-unselected-container-color: #4b5563;
+  --mdc-checkbox-unselected-border-color: #6b7280;
+}
+
+/* Button styling */
+.mat-mdc-button {
+  --mdc-text-button-container-color: #dc2626;
+  --mdc-text-button-label-text-color: #ffffff;
+}
+
+.mat-mdc-button:hover {
+  --mdc-text-button-container-color: #b91c1c;
+}
+
+/* Slider styling improvements */
+.mat-mdc-slider {
+  --mdc-slider-track-color: #4b5563;
+  --mdc-slider-active-track-color: #5371ff;
+  --mdc-slider-handle-color: #5371ff;
+  --mdc-slider-inactive-track-color: #4b5563;
+  --mdc-slider-with-tick-marks-inactive-container-color: #6b7280;
+  --mdc-slider-with-tick-marks-active-container-color: #5371ff;
+}
