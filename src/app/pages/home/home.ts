@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,6 +8,8 @@ import { MenuList } from '../../components/menu-list/menu-list';
 import { DishDetail } from '../../components/dish-detail/dish-detail';
 import { Dish, DishFilter } from '../../core/models/dish';
 import { Router } from '@angular/router';
+import { ToastSuccess } from '../../components/toast-success/toast-success';
+import { ToastError } from '../../components/toast-error/toast-error';
 
 @Component({
   selector: 'app-home',
@@ -18,12 +20,17 @@ import { Router } from '@angular/router';
     MatButtonModule,
     MatDialogModule,
     Filter,
-    MenuList
+    MenuList,
+    ToastSuccess,
+    ToastError
   ],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrls: ['./home.css'],
 })
 export class Home {
+  @ViewChild(ToastSuccess) toastSuccess!: ToastSuccess;
+  @ViewChild(ToastError) toastError!: ToastError;
+
   currentFilter: DishFilter = {};
   showFilter: boolean = false;
 
@@ -50,6 +57,9 @@ export class Home {
       if (result) {
         // Handle adding to cart
         console.log('Ajouter au panier:', result);
+        this.toastSuccess.show('Commande ajoutée avec succès');
+      } else {
+        this.toastError.show('Erreur lors de l\'ajout de la commande');
       }
     });
   }

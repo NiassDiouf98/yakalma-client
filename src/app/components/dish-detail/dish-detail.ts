@@ -1,4 +1,4 @@
-import { Component, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, Inject, Output, EventEmitter, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { Dish } from '../../core/models/dish';
+import { ToastSuccess } from '../toast-success/toast-success';
+import { ToastError } from '../toast-error/toast-error';
 
 @Component({
   selector: 'app-dish-detail',
@@ -22,13 +24,18 @@ import { Dish } from '../../core/models/dish';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    ToastSuccess,
+    ToastError
   ],
   templateUrl: './dish-detail.html',
   styleUrl: './dish-detail.css',
 })
 export class DishDetail {
   @Output() addToOrder = new EventEmitter<any>();
+
+  @ViewChild(ToastSuccess) toastSuccess!: ToastSuccess;
+  @ViewChild(ToastError) toastError!: ToastError;
 
   quantity: number = 1;
   specialInstructions: string = '';
@@ -52,6 +59,9 @@ export class DishDetail {
       totalPrice: this.dish.price * this.quantity
     };
     this.dialogRef.close(orderDetails);
+    // Show success toast after order added
+    this.toastSuccess.show("Commande ajoutée avec succès !");
+    // If error handling existed, could call this.toastError.show('Erreur lors de l\'ajout de la commande.');
   }
 
   increaseQuantity(): void {
