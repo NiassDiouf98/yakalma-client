@@ -73,7 +73,7 @@ export class MenuList implements OnInit, OnDestroy {
 
   private loadInitialDishes() {
     this.isLoading = true;
-    this.dishService.getAllDishes().pipe(
+    this.dishService.getAllDishes(this.restaurantId).pipe(
       takeUntil(this.destroy$)
     ).subscribe({
       next: (dishes) => {
@@ -133,7 +133,7 @@ export class MenuList implements OnInit, OnDestroy {
     this.dishSelected.emit(dish);
   }
 
-  trackByDishId(index: number, dish: Dish): number {
+  trackByDishId(index: number, dish: Dish): string {
     return dish.id;
   }
 

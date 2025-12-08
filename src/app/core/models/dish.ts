@@ -1,16 +1,11 @@
 export interface Dish {
-  id: number;
+  id: string;
   name: string;
   description: string;
   price: number;
   image: string;
-  category: DishCategory;
-  ingredients: string[];
-  supplements: string[];
-  isAvailable: boolean;
-  preparationTime: number; // in minutes
-  rating: number;
-  reviewsCount: number;
+  supplements: { name: string; price: number }[];
+  quantity: number;
 }
 
 export enum DishCategory {
@@ -22,9 +17,7 @@ export enum DishCategory {
 }
 
 export interface DishFilter {
-  category?: DishCategory;
   minPrice?: number;
   maxPrice?: number;
   searchTerm?: string;
-  isAvailable?: boolean;
 }

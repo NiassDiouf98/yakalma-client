@@ -39,7 +39,7 @@ export class DishDetail {
 
   quantity: number = 1;
   specialInstructions: string = '';
-  selectedSupplements: string[] = [];
+  selectedSupplements: { name: string; price: number }[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<DishDetail>,
@@ -51,12 +51,13 @@ export class DishDetail {
   }
 
   onAddToOrder(): void {
+    const supplementsPrice = this.selectedSupplements.reduce((total, sup) => total + sup.price, 0);
     const orderDetails = {
       dish: this.dish,
       quantity: this.quantity,
       specialInstructions: this.specialInstructions,
       selectedSupplements: this.selectedSupplements,
-      totalPrice: this.dish.price * this.quantity
+      totalPrice: (this.dish.price + supplementsPrice) * this.quantity
     };
     this.dialogRef.close(orderDetails);
     // Show success toast after order added
@@ -83,5 +84,23 @@ export class DishDetail {
       'Accompagnement': 'accent'
     };
     return colors[category] || 'basic';
+  }
+
+  isSupplementSelected(supplement: { name: string; price: number }): boolean {
+    return this.selectedSupplements.some(selected => selected.name === supplement.name);
+  }
+
+  toggleSupplement(supplement: { name: string; price: number }): void {
+    const index = this.selectedSupplements.findIndex(selected => selected.name === supplement.name);
+    if (index > -1) {
+      this.selectedSupplements.splice(index, 1);
+    } else {
+      this.selectedSupplements.push(supplement);
+    }
+  }
+
+  getTotalPrice(): number {
+    const supplementsPrice = this.selectedSupplements.reduce((total, sup) => total + sup.price, 0);
+    return (this.dish.price + supplementsPrice) * this.quantity;
   }
 }

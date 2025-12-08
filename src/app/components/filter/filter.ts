@@ -52,11 +52,11 @@ export class Filter {
 
   onFilterChange() {
     const filter: DishFilter = {
-      category: this.selectedCategory || undefined,
+      // category: this.selectedCategory || undefined,
       minPrice: this.minPrice,
       maxPrice: this.maxPrice,
       searchTerm: this.searchTerm || undefined,
-      isAvailable: this.showAvailableOnly || undefined
+      // isAvailable: this.showAvailableOnly || undefined
     };
     this.filterChanged.emit(filter);
   }

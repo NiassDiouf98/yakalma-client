@@ -24,7 +24,7 @@
           <div class="relative z-10 p-6 h-full flex flex-col justify-between">
 
             <!-- Header with Category Badge -->
-            <div class="flex justify-between items-start mb-4">
+            <!-- <div class="flex justify-between items-start mb-4">
               <mat-chip class="category-chip" [color]="getCategoryColor(dish.category)">
                 {{ dish.category }}
               </mat-chip>
@@ -33,7 +33,7 @@
                 <span class="text-white text-sm font-medium">{{ dish.rating }}</span>
                 <span class="text-gray-400 text-xs">({{ dish.reviewsCount }})</span>
               </div>
-            </div>
+            </div> -->
 
             <!-- Dish Name and Description -->
             <div class="mb-4">
@@ -46,7 +46,7 @@
             </div>
 
             <!-- Ingredients Preview -->
-            <div class="mb-4">
+            <!-- <div class="mb-4">
               <div class="flex flex-wrap gap-1">
                 <span *ngFor="let ingredient of dish.ingredients.slice(0, 3)"
                       class="inline-block bg-blue-500/20 text-blue-300 text-xs px-2 py-1 rounded-full border border-blue-500/30">
@@ -57,7 +57,7 @@
                   +{{ dish.ingredients.length - 3 }} autres
                 </span>
               </div>
-            </div>
+            </div> -->
 
             <!-- Footer with Price and Details -->
             <div class="flex justify-between items-center">
@@ -65,18 +65,18 @@
                 <span class="text-2xl font-bold text-blue-400">{{ dish.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</span>
                 <div class="flex items-center space-x-2 text-xs text-gray-400">
                   <mat-icon class="text-xs">schedule</mat-icon>
-                  <span>{{ dish.preparationTime }} min</span>
-                  <span *ngIf="!dish.isAvailable" class="text-red-400 font-medium">Indisponible</span>
+                  <!-- <span>{{ dish.preparationTime }} min</span> -->
+                  <!-- <span *ngIf="!dish.isAvailable" class="text-red-400 font-medium">Indisponible</span> -->
                 </div>
               </div>
 
               <!-- Action Button -->
-              <button mat-fab
+              <!-- <button mat-fab
                       color="primary"
                       class="action-btn opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300"
                       [disabled]="!dish.isAvailable">
                 <mat-icon>add</mat-icon>
-              </button>
+              </button> -->
             </div>
           </div>
 

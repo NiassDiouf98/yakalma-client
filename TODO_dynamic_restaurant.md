@@ -13,8 +13,8 @@
 - [x] Mettre à jour le template Home pour passer l'ID du restaurant au composant MenuList
 
 ## Étapes suivantes
+- [ ] Adapter le modèle Dish pour correspondre aux données du backend MenuItem
 - [ ] Tester l'application pour s'assurer que le nom du restaurant s'affiche correctement avec l'ID dans l'URL
 - [ ] Gérer les erreurs de chargement (par exemple, si le backend n'est pas disponible)
 - [ ] Ajouter un état de chargement pendant la récupération des données
-- [ ] Adapter le modèle Dish pour correspondre aux données du backend MenuItem
 - [ ] Gérer la navigation vers les détails du plat avec l'ID du restaurant dans l'URL
