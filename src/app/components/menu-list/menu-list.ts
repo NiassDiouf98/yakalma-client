@@ -90,7 +90,7 @@ export class MenuList implements OnInit, OnDestroy {
   }
 
   private applyFilter(filter: DishFilter) {
-    this.dishService.applyFilters(filter).pipe(
+    this.dishService.applyFilters(filter, this.restaurantId).pipe(
       takeUntil(this.destroy$)
     ).subscribe({
       next: (filteredDishes) => {
@@ -111,7 +111,7 @@ export class MenuList implements OnInit, OnDestroy {
 
   private loadMoreDishes() {
     this.isLoading = true;
-    this.dishService.getNextBatch(this.displayedDishes.length).pipe(
+    this.dishService.getNextBatch(this.displayedDishes.length, this.restaurantId).pipe(
       takeUntil(this.destroy$)
     ).subscribe({
       next: (newDishes) => {
