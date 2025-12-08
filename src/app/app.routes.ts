@@ -7,9 +7,6 @@ export const routes: Routes = [
   {
     path: 'restaurant/:restaurantId',
     component: Home,
-    data: {
-      prerender: false
-    }
   },
   { path: 'dish/:id', component: DishDetailPage },
 ];
