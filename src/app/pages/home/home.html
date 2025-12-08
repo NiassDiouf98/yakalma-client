@@ -9,7 +9,7 @@
     <div class="relative z-10 container mx-auto px-6 py-12">
       <div class="text-center">
         <h1 class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent mb-4">
-          Yakalma
+          Yakalma - {{ restaurantName }}
         </h1>
         <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
           Découvrez notre carte exceptionnelle avec des plats authentiques et savoureux
@@ -67,6 +67,7 @@
 
         <app-menu-list
           [filter]="currentFilter"
+          [restaurantId]="restaurantId"
           (dishSelected)="onDishSelected($event)">
         </app-menu-list>
       </section>

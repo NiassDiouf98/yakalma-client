@@ -4,6 +4,12 @@ import { DishDetailPage } from './pages/dish-detail-page/dish-detail-page';
 
 export const routes: Routes = [
 
-  { path: '', component: Home },
+  {
+    path: 'restaurant/:restaurantId',
+    component: Home,
+    data: {
+      prerender: false
+    }
+  },
   { path: 'dish/:id', component: DishDetailPage },
 ];

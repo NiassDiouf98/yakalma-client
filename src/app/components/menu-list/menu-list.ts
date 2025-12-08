@@ -30,6 +30,7 @@ import { AnimateDirective } from '../../core/directives/animate';
 })
 export class MenuList implements OnInit, OnDestroy {
   @Input() filter: DishFilter = {};
+  @Input() restaurantId: string = '';
   @Output() dishSelected = new EventEmitter<Dish>();
 
   dishes: Dish[] = [];

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, delay } from 'rxjs/operators';
 import { Dish, DishCategory, DishFilter } from '../models/dish';
@@ -6,6 +7,10 @@ import { Dish, DishCategory, DishFilter } from '../models/dish';
   providedIn: 'root'
 })
 export class DishService {
+  private apiUrl = 'http://localhost:3000/api/restaurants/menu/restaurant';
+
+  constructor(private http: HttpClient) {}
+
   private dishes: Dish[] = [
     {
       id: 1,
@@ -235,9 +240,11 @@ export class DishService {
   ];
   private filteredDishesSubject = new BehaviorSubject<Dish[]>(this.dishes);
   public filteredDishes$ = this.filteredDishesSubject.asObservable();
-  constructor() { }
-  getAllDishes(): Observable<Dish[]> {
-    return of(this.dishes).pipe(delay(500)); // Simulate API delay
+  getAllDishes(restaurantId?: string): Observable<Dish[]> {
+    if (restaurantId) {
+      return this.http.get<Dish[]>(`${this.apiUrl}/${restaurantId}`);
+    }
+    return of(this.dishes).pipe(delay(500)); // Fallback to mock data
   }
   getDishById(id: number): Observable<Dish | undefined> {
     const dish = this.dishes.find(d => d.id === id);
