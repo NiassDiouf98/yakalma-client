@@ -18,7 +18,8 @@
 
           <!-- Background Image Overlay -->
           <div class="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-30 transition-opacity duration-500"
-               [style.background-image]="'url(' + dish.image + ')'"></div>
+               [style.background-image]="'url(' + (dish.image || '/assets/riz.png') + ')'">
+          </div>
 
           <!-- Content Overlay -->
           <div class="relative z-10 p-6 h-full flex flex-col justify-between">
