@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://yakalma-frontend.onrender.com/api'
+  apiUrl: 'https://yakalma.onrender.com/api'
 };
